@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import 'dotenv/config';
 
-import { sendMessage, receiveMessage } from "./app/twilio.js";
+import { receiveText } from "./app/index.js";
 
 const app = express();
 const port = 3000;
@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.post("/receive", async (req, res) => {
   const { body } = req;
-  await receiveMessage(body);
+  await receiveText(body);
 
   return res.send().status(200);
 });
